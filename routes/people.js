@@ -6,9 +6,29 @@ const { check } = require('express-validator');
 
 // Validation rules array
 const valid_user = [
-  check('name', 'Error de nombre')
-    .isLength({min: 3})
-    .isAlpha(['es-ES'])
+  check('name', 'Error de nombre.')
+    .isLength({ min: 3 })
+    .matches(/^([^\s]*[a-zA-ZÀ-ÿ]\s{0,1})[^\s]*$/),
+
+  check('surname', 'Error de apellido')
+    .isLength({ min: 3 })
+    .matches(/^([^\s]*[a-zA-ZÀ-ÿ]\s{0,1})[^\s]*$/),
+
+  check('age', 'Error de edad')
+    .isInt({ gt: -1, lt: 126 }),
+
+  check('dni', 'Error de DNI')
+    .matches(/^[a-zA-Z0-9]{9}$/),
+
+  check('dateOfBirth', 'Error de fecha de cumpleaños. Formato válido: YYYY-MM-DD')
+    .isISO8601(),
+
+  check('favouriteColour', 'Error de nombre de color')
+    .matches(/^([^\s]*[a-zA-ZÀ-ÿ]\s{0,1})[^\s]*$/),
+
+  check('gender', 'Error de género')
+  .isIn(['Hombre', 'Mujer', 'Otro', 'No especificado'])
+  
 ];
 
 // CREATE User
