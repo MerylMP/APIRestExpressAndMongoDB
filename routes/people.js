@@ -7,11 +7,8 @@ const { check } = require('express-validator');
 // Validation rules array
 const valid_user = [
   check('name', 'Error de nombre')
-    .isLength({ min: 3 })
-    .isAlpha(['es-ES']),
-  check('phone', 'Error de teléfono')
-    .isLength({ min: 7, max: 10 })
-    .isMobilePhone()
+    .isLength({min: 3})
+    .isAlpha(['es-ES'])
 ];
 
 // CREATE User
@@ -19,7 +16,7 @@ router.post('/', valid_user, people_controller.users_create);
 
 // READ all users / user
 router.get('/', people_controller.users_list);
-router.get('/:id', people_controller.users_getById);
+router.get('/:id', people_controller.getUserById);
 
 // UPDATE user
 router.put('/:id', valid_user, people_controller.users_update_one);
