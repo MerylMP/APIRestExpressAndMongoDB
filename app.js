@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var peopleRouter = require('./routes/people');
 
 var app = express();
 
@@ -16,5 +17,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/people', peopleRouter);
+
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send('¡Se ha producido un error!');
+    next(err);
+});
 
 module.exports = app;
