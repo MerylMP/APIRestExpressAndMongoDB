@@ -1,13 +1,6 @@
 const { validationResult } = require('express-validator');
 var db = require ('../db/db');
-
-// Database connection
-db.connect('mongodb://localhost:27017', function (err) {
-    if (err) {
-        throw ('Fallo en la conexión con la BD');
-    }
-});
-
+var ObjectId = require('mongodb').ObjectId;
 
 // Display all users
 module.exports.users_list = function (req, res, next) {

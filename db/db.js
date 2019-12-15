@@ -3,7 +3,6 @@ var db = null;
 
 // DB connection
 module.exports.connect = function(url, callback) {
-    
     if(db) {
         return callback();
     }

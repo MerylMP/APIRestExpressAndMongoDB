@@ -14,13 +14,14 @@ const valid_user = [
     .isMobilePhone()
 ];
 
-// POST create user
+// CREATE User
 router.post('/', valid_user, people_controller.users_create);
 
-// GET users listing
+// READ all users / user
 router.get('/', people_controller.users_list);
+router.get('/:id', people_controller.users_getById);
 
-// PUT update user
+// UPDATE user
 router.put('/:id', valid_user, people_controller.users_update_one);
 
 // DELETE user
