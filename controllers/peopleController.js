@@ -84,7 +84,7 @@ module.exports.users_update_one = function (req, res, next) {
         return;
     }
 
-    const filter = {_id: ObjectId(req.params.id)};
+    const filter = { _id: ObjectId(req.params.id) };
     const update = {
         $set: {
             name: req.body.name,
@@ -110,13 +110,13 @@ module.exports.users_update_one = function (req, res, next) {
 
 // Delete users
 module.exports.users_delete_one = function (req, res, next) {
-    
+
     if (db.get() === null) {
         next(new Error('La conexión no está establecida'));
         return;
     }
 
-    const filter = {_id: ObjectId(req.params.id)};
+    const filter = { _id: ObjectId(req.params.id) };
     db.get().db('apidb').collection('users').deleteOne(filter, function (err, result) {
         if (err) {
             next(new Error('Error al eliminar usuario.'));

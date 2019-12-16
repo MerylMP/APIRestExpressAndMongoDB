@@ -8,11 +8,11 @@ const { check } = require('express-validator');
 const valid_user = [
   check('name', 'Error de nombre.')
     .isLength({ min: 3 })
-    .matches(/^([^\s]*[a-zA-ZÀ-ÿ]\s{0,1})[^\s]*$/),
+    .matches(/^([^\s]+[^0-9])+$/),
 
   check('surname', 'Error de apellido')
     .isLength({ min: 3 })
-    .matches(/^([^\s]*[a-zA-ZÀ-ÿ]\s{0,1})[^\s]*$/),
+    .matches(/^([^\s]+[^0-9])+$/),
 
   check('age', 'Error de edad')
     .isInt({ gt: -1, lt: 126 }),
@@ -24,11 +24,12 @@ const valid_user = [
     .isISO8601(),
 
   check('favouriteColour', 'Error de nombre de color')
-    .matches(/^([^\s]*[a-zA-ZÀ-ÿ]\s{0,1})[^\s]*$/),
+    .isLength({ min: 3 })
+    .matches(/^([^\s]+[^0-9])+$/),
 
   check('gender', 'Error de género')
-  .isIn(['Hombre', 'Mujer', 'Otro', 'No especificado'])
-  
+    .isIn(['Hombre', 'Mujer', 'Otro', 'No especificado'])
+
 ];
 
 // CREATE User
